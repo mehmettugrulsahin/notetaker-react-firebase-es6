@@ -2864,6 +2864,10 @@ react:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
+react-addons-create-fragment:
+  version "15.4.0"
+  resolved "https://registry.yarnpkg.com/react-addons-create-fragment/-/react-addons-create-fragment-15.4.0.tgz#3e7c4806db6e3ec553fe0b88a622dc816a1cc7a1"
+
 react-addons-css-transition-group:
   version "15.4.0"
   resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.4.0.tgz#410aa74533629974de33cfeaa85945066ff181cd"

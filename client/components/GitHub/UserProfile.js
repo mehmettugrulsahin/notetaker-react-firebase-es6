@@ -3,11 +3,11 @@ import React from 'react';
 const UserProfile = React.createClass({
     propTypes: {
         username: React.PropTypes.string.isRequired,
-        bio: React.PropTypes.string.isRequired
+        bio: React.PropTypes.array.isRequired
     },
     render() {
         const {username, bio} = this.props;
-
+        
         return (
             <div>
                 <p>USER PROFILE!</p>

@@ -1,6 +1,6 @@
 {
   "name": "notetaker-react-firebase-es6",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "GitHub notetaker application with React, Firebase and Webpack",
   "scripts": {
     "start": "node devServer.js"
@@ -46,6 +46,7 @@
     "firebase": "2.3.2",
     "raven-js": "^3.8.1",
     "react": "^15.4.0",
+    "react-addons-create-fragment": "^15.4.0",
     "react-addons-css-transition-group": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-redux": "^4.4.6",

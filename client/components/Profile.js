@@ -8,12 +8,16 @@ import Notes from './Notes/Notes';
 import ReactFireMixin from 'reactfire';
 import Firebase from 'firebase';
 
+import createFragment from 'react-addons-create-fragment';
+
 const Profile = React.createClass({
     mixins: [ReactFireMixin],
     getInitialState() {
         return {
             notes: [],
-            bio: 'Mehmet Tuğrul Şahin',
+            bio: createFragment({
+                name: 'Mehmet Tuğrul Şahin'
+            }),
             repos: ['a', 'b', 'c']
         }
     },
@@ -24,6 +28,9 @@ const Profile = React.createClass({
     },
     componentWillUnmmount(){
         this.unbind('notes');
+    },
+    handleAddNote(newNote) {
+        this.ref.child(this.props.params.username).child(this.state.notes.length).set(newNote);
     },
     render() {
         return (
@@ -42,7 +49,8 @@ const Profile = React.createClass({
                 <div className="col-sm-4 col-md-4 col-lg-4">
                     <Notes 
                     username={this.props.params.username}
-                    notes={this.state.notes}/>
+                    notes={this.state.notes}
+                    addNote={this.handleAddNote}/>
                 </div>
             </div>            
         )
