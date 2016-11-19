@@ -5,7 +5,11 @@ import UserProfile from './GitHub/UserProfile';
 import Repos from './GitHub/Repos';
 import Notes from './Notes/Notes';
 
+import ReactFireMixin from 'reactfire';
+import Firebase from 'firebase';
+
 const Profile = React.createClass({
+    mixins: [ReactFireMixin],
     getInitialState() {
         return {
             notes: [1, 2, 3],
@@ -13,9 +17,15 @@ const Profile = React.createClass({
             repos: ['a', 'b', 'c']
         }
     },
+    componentDidMount() {
+        this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
+        const childRef = this.ref.child(this.props.params.username);
+        this.bindAsArray(childRef, 'notes');
+    },
+    componentWillUnmmount(){
+        this.unbind('notes');
+    },
     render() {
-        console.log(this.props)
-
         return (
             <div className="row">
                 <div className="col-sm-4 col-md-4 col-lg-4">
@@ -25,10 +35,14 @@ const Profile = React.createClass({
                     />
                 </div>
                 <div className="col-sm-4 col-md-4 col-lg-4">
-                    <Repos repos={this.state.repos}/>
+                    <Repos 
+                    username={this.props.params.username}
+                    repos={this.state.repos}/>
                 </div>
                 <div className="col-sm-4 col-md-4 col-lg-4">
-                    <Notes notes={this.state.notes}/>
+                    <Notes 
+                    username={this.props.params.username}
+                    notes={this.state.notes}/>
                 </div>
             </div>            
         )
