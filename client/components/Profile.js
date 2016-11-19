@@ -12,7 +12,7 @@ const Profile = React.createClass({
     mixins: [ReactFireMixin],
     getInitialState() {
         return {
-            notes: [1, 2, 3],
+            notes: [],
             bio: 'Mehmet Tuğrul Şahin',
             repos: ['a', 'b', 'c']
         }
