@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchGitHub from './SearchGitHub';
 
 const Main = React.createClass({
     render() {
@@ -6,7 +7,7 @@ const Main = React.createClass({
           <div className="main-container">
             <nav className="navbar navbar-default" role="navigation">
               <div className="col-sm-7 col-sm-offset-2" style={{marginTop: 15}}>
-                <center>MENU</center>
+                <SearchGitHub />
               </div>
             </nav>
             <div className="container">
