@@ -1,2 +1,5 @@
 node_modules
-/public/bundle.js
+dist/bundle.js
+dist/bundle.js.map
+npm-debug.log
+yarn-error.log
