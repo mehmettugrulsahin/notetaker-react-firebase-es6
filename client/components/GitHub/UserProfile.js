@@ -1,10 +1,6 @@
 import React from 'react';
 
-const UserProfile = React.createClass({
-    propTypes: {
-        username: React.PropTypes.string.isRequired,
-        bio: React.PropTypes.object.isRequired
-    },
+class UserProfile extends React.Component {
     render() {
         return (
           <div>            
@@ -21,7 +17,12 @@ const UserProfile = React.createClass({
             {this.props.bio.blog && <li className="list-group-item">Blog: <a href={this.props.bio.blog}> {this.props.bio.blog}</a></li>}
           </div>
         )
-    }
-});
+    };
+};
+
+UserProfile.propTypes = {
+    username: React.PropTypes.string.isRequired,
+    bio: React.PropTypes.object.isRequired
+};
 
 export default UserProfile;
