@@ -11,8 +11,8 @@ class Notes extends React.Component {
                 <NotesList notes={this.props.notes} />
             </div>
         )
-    }
-}
+    };
+};
 
 Notes.propTypes = {
     username: React.PropTypes.string.isRequired,

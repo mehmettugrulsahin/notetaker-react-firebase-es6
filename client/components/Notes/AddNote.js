@@ -3,13 +3,13 @@ import React from 'react';
 class AddNote extends React.Component {
     setRef(ref) {
         this.note = ref;
-    }
+    };
 
     handleSubmit() {
         const newNote = this.note.value;
         this.note.value = '';
         this.props.addNote(newNote);
-    }
+    };
 
     render() {
         return (
@@ -31,8 +31,8 @@ class AddNote extends React.Component {
                 </span>
             </div>
         )
-    }
-}
+    };
+};
 
 AddNote.propTypes = {
     username: React.PropTypes.string.isRequired,
