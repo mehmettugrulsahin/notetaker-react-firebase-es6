@@ -8,16 +8,14 @@ import Notes from './Notes/Notes';
 import ReactFireMixin from 'reactfire';
 import Firebase from 'firebase';
 
-import createFragment from 'react-addons-create-fragment';
+import helpers from '../helpers';
 
 const Profile = React.createClass({
     mixins: [ReactFireMixin],
     getInitialState() {
         return {
             notes: [],
-            bio: createFragment({
-                name: 'Mehmet Tuğrul Şahin'
-            }),
+            bio: {},
             repos: ['a', 'b', 'c']
         }
     },
@@ -25,6 +23,13 @@ const Profile = React.createClass({
         this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
         const childRef = this.ref.child(this.props.params.username);
         this.bindAsArray(childRef, 'notes');
+
+        helpers.getGitHubInfo(this.props.params.username).then((data) => {
+            this.setState({
+                bio: data.bio,
+                repos: data.repos
+            });            
+        });
     },
     componentWillUnmmount(){
         this.unbind('notes');
