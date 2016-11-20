@@ -1,6 +1,6 @@
 {
   "name": "notetaker-react-firebase-es6",
-  "version": "0.15.0",
+  "version": "0.17.0",
   "description": "GitHub Notetaker application with React, Firebase and Webpack",
   "scripts": {
     "start": "node server.js"
