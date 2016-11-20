@@ -1,9 +1,9 @@
 {
   "name": "notetaker-react-firebase-es6",
-  "version": "0.8.0",
-  "description": "GitHub notetaker application with React, Firebase and Webpack",
+  "version": "1.0.0",
+  "description": "GitHub Notetaker application with React, Firebase and Webpack",
   "scripts": {
-    "start": "node devServer.js"
+    "start": "node server.js"
   },
   "keywords": [
     "react",
@@ -29,6 +29,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.15.2",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.8",
@@ -45,8 +46,8 @@
     "express": "^4.14.0",
     "firebase": "2.3.2",
     "raven-js": "^3.8.1",
+    "re-base": "1.3.1",
     "react": "^15.4.0",
-    "react-addons-create-fragment": "^15.4.0",
     "react-addons-css-transition-group": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-redux": "^4.4.6",
