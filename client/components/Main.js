@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchGitHub from './SearchGitHub';
 
-const Main = React.createClass({
+class Main extends React.Component {
     render() {
         return (
           <div className="main-container">
@@ -15,7 +15,7 @@ const Main = React.createClass({
             </div>
           </div>
         )
-    }
-});
+    };
+};
 
 export default Main;
