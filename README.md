@@ -27,9 +27,4 @@ yarn start
 ```
 
 ## Run
-Checkout command prompt to see the following
-```
-webpack: bundle is now VALID.
-```
-
 Navigate to [localhost](http://localhost:7676)
