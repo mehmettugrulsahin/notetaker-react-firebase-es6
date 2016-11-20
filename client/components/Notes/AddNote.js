@@ -1,18 +1,16 @@
 import React from 'react';
 
-const AddNote = React.createClass({
-    propTypes: {
-        username: React.PropTypes.string.isRequired,
-        addNote: React.PropTypes.func.isRequired
-    },
+class AddNote extends React.Component {
     setRef(ref) {
         this.note = ref;
-    },
+    }
+
     handleSubmit() {
         const newNote = this.note.value;
         this.note.value = '';
         this.props.addNote(newNote);
-    },
+    }
+
     render() {
         return (
             <div className='input-group'>
@@ -20,20 +18,25 @@ const AddNote = React.createClass({
                 type='text' 
                 className='form-control' 
                 placeholder='Add New Note' 
-                ref={this.setRef} />
+                ref={(ref) => this.setRef(ref)} />
 
                 <span className='input-group-btn'>
 
                 <button 
                 className='btn btn-default' 
                 type='button' 
-                onClick={this.handleSubmit}>Submit
+                onClick={() => this.handleSubmit()}>Submit
                 </button>
 
                 </span>
             </div>
         )
     }
-});
+}
+
+AddNote.propTypes = {
+    username: React.PropTypes.string.isRequired,
+    addNote: React.PropTypes.func.isRequired
+};
 
 export default AddNote;
