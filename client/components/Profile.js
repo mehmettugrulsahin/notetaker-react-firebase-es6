@@ -21,10 +21,17 @@ const Profile = React.createClass({
     },
     componentDidMount() {
         this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
-        const childRef = this.ref.child(this.props.params.username);
+        this.init(this.props.params.username);
+    },
+    componentWillReceiveProps(nextProps) {
+        this.unbind('notes');
+        this.init(nextProps.params.username);
+    },
+    init(username) {
+        const childRef = this.ref.child(username);
         this.bindAsArray(childRef, 'notes');
 
-        helpers.getGitHubInfo(this.props.params.username).then((data) => {
+        helpers.getGitHubInfo(username).then((data) => {
             this.setState({
                 bio: data.bio,
                 repos: data.repos
