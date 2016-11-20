@@ -1,35 +1,40 @@
 import React from 'react';
-import Router from 'react-router';
 
 import UserProfile from './GitHub/UserProfile';
 import Repos from './GitHub/Repos';
 import Notes from './Notes/Notes';
 
-import ReactFireMixin from 'reactfire';
-import Firebase from 'firebase';
-
 import getGitHubInfo from '../helpers';
 
-const Profile = React.createClass({
-    mixins: [ReactFireMixin],
-    getInitialState() {
-        return {
+import Rebase from 're-base';
+
+const base = Rebase.createClass('https://github-note-taker.firebaseio.com');
+
+class Profile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             notes: [],
             bio: {},
-            repos: ['a', 'b', 'c']
-        }
-    },
+            repos: []
+        };
+    };
+
     componentDidMount() {
-        this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
         this.init(this.props.params.username);
-    },
+    };
+
     componentWillReceiveProps(nextProps) {
-        this.unbind('notes');
+        base.removeBinding(this.ref);
         this.init(nextProps.params.username);
-    },
+    };
+
     init(username) {
-        const childRef = this.ref.child(username);
-        this.bindAsArray(childRef, 'notes');
+        this.ref = base.bindToState(username, {
+            context: this,
+            asArray: true,
+            state: 'notes'
+        });
 
         getGitHubInfo(username).then((data) => {
             this.setState({
@@ -37,13 +42,18 @@ const Profile = React.createClass({
                 repos: data.repos
             });            
         });
-    },
-    componentWillUnmmount(){
-        this.unbind('notes');
-    },
+    };
+
+    componentWillUnmmount() {
+        base.removeBinding(this.ref);
+    };
+
     handleAddNote(newNote) {
-        this.ref.child(this.props.params.username).child(this.state.notes.length).set(newNote);
-    },
+        base.post(this.props.params.username, {
+            data: this.state.notes.concat([newNote])
+        });
+    };
+
     render() {
         return (
             <div className="row">
@@ -62,11 +72,11 @@ const Profile = React.createClass({
                     <Notes 
                     username={this.props.params.username}
                     notes={this.state.notes}
-                    addNote={this.handleAddNote}/>
+                    addNote={(newNote) => this.handleAddNote(newNote)}/>
                 </div>
             </div>            
         )
-    }
-});
+    };
+};
 
 export default Profile;
